@@ -73,4 +73,9 @@ public class GameManager : MonoBehaviour
     {
         return instance.score;
     }
+
+    public static void ReachGate()
+    {
+
+    }
 }
