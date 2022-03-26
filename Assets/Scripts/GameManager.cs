@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
 
     public static void GetCollectible(GameObject collectibleObject)
     {
+        SoundEffectManager.PlayCollectibleStatic();
         ObjectPools.DestroyObject(collectibleObject);
         if (instance != null) instance.Score();
     }
@@ -37,6 +38,7 @@ public class GameManager : MonoBehaviour
 
     public static void PlayerCrash(GameObject playerObject)
     {
+        SoundEffectManager.PlayCrashStatic();
         Destroy(playerObject);
         if (instance != null) instance.NewGame();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);

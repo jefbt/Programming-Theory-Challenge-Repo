@@ -10,11 +10,13 @@ public class MainMenuManager : MonoBehaviour
 {
     public void StartGame()
     {
+        SoundEffectManager.PlayStartStatic();
         SceneManager.LoadScene("GameScene");
     }
 
     public void ExitGame()
     {
+        SoundEffectManager.PlayCloseStatic();
 #if UNITY_EDITOR
         EditorApplication.ExitPlaymode();
 #else

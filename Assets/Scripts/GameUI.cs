@@ -22,6 +22,7 @@ public class GameUI : MonoBehaviour
 
     public void ToMenu()
     {
+        SoundEffectManager.PlayCloseStatic();
         SceneManager.LoadScene("Menu");
     }
 }
