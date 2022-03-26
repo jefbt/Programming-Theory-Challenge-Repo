@@ -5,7 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    private GameManager instance = null;
+    private static GameManager instance = null;
+
+    private int score = 0;
 
     private void Awake()
     {
@@ -17,17 +19,32 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
+            NewGame();
         }
     }
 
-    public static void GetCollectible()
+    public static void GetCollectible(GameObject collectibleObject)
     {
+        ObjectPools.DestroyObject(collectibleObject);
+        if (instance != null) instance.Score();
+    }
 
+    void Score(int points = 1)
+    {
+        score += points;
+        Debug.Log("Score: " + score);
     }
 
     public static void PlayerCrash(GameObject playerObject)
     {
         Destroy(playerObject);
+        if (instance != null) instance.NewGame();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    void NewGame()
+    {
+        score = 0;
+        Debug.Log("Score: " + score);
     }
 }

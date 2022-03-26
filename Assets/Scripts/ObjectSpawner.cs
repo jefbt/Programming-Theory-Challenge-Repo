@@ -7,13 +7,18 @@ public class ObjectSpawner : MonoBehaviour
     [SerializeField] GameObject spawnObject;
     [SerializeField] float spawnTime = 3f;
     [SerializeField] float startDelay = 3f;
+    [SerializeField] int harderSpawnCount = 3;
+    [SerializeField] float harderTimerDecrease = 0.1f;
 
     private float spawnZ;
     private float spawnLimitPosition;
     private float nextSpawnTimer;
+    
     private Coroutine spawnCoroutine;
 
     private bool isSpawning = false;
+
+    private int spawnCount = 0;
 
     private void Awake()
     {
@@ -44,6 +49,21 @@ public class ObjectSpawner : MonoBehaviour
         if (spawningObject != null)
         {
             spawningObject.transform.position = RandomSpawnPosition();
+        }
+        VerifyDifficulty();
+    }
+
+    void VerifyDifficulty()
+    {
+        spawnCount++;
+        if (spawnCount > harderSpawnCount)
+        {
+            spawnCount = 0;
+            spawnTime -= harderTimerDecrease;
+            if (spawnTime < 0.5f)
+            {
+                spawnTime = 0.5f;
+            }
         }
     }
 

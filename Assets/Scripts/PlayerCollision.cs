@@ -10,5 +10,9 @@ public class PlayerCollision : MonoBehaviour
         {
             GameManager.PlayerCrash(gameObject);
         }
+        else
+        {
+            GameManager.GetCollectible(other.gameObject);
+        }
     }
 }
