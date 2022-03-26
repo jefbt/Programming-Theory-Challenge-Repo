@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameUI : MonoBehaviour
 {
-    [SerializeField] Text scoreText;
+    [SerializeField] TextMeshProUGUI scoreText;
     [SerializeField] string prefixScoreText = "SCORE: ";
 
     public void UpdateScoreText(int score)

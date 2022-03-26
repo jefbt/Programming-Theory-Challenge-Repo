@@ -959,7 +959,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae7ddae6e9be25e43a3f115bb5c71418, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreText: {fileID: 0}
+  scoreText: {fileID: 830457353}
   prefixScoreText: 'SCORE: '
 --- !u!114 &1663684981
 MonoBehaviour:

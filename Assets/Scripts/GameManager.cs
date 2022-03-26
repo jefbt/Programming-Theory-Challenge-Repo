@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
     void Score(int points = 1)
     {
         score += points;
-        Debug.Log("Score: " + score);
+        FindObjectOfType<GameUI>().UpdateScoreText(score);
     }
 
     public static void PlayerCrash(GameObject playerObject)
@@ -46,5 +46,10 @@ public class GameManager : MonoBehaviour
     {
         score = 0;
         Debug.Log("Score: " + score);
+    }
+
+    public static int GetScore()
+    {
+        return instance.score;
     }
 }
