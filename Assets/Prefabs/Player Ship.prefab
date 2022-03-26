@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1246414434}
   - component: {fileID: 1246414433}
   - component: {fileID: 1246414432}
+  - component: {fileID: 1246414439}
   m_Layer: 3
   m_Name: Player Ship
   m_TagString: Player
@@ -132,7 +133,7 @@ BoxCollider:
   m_GameObject: {fileID: 4576583486528692515}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1.9999999, y: 0.79999995, z: 2.1}
   m_Center: {x: 0, y: 0.39999998, z: 0}
@@ -148,3 +149,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f4f16ebc3e806648994801e412e12e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!64 &1246414439
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4576583486528692515}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -1682360018315694226, guid: 017e3092b0fde9a4e98580671557a090, type: 3}

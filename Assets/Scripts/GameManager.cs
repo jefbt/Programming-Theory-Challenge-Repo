@@ -3,9 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+[DefaultExecutionOrder(100)]
 public class GameManager : MonoBehaviour
 {
     private static GameManager instance = null;
+
+    [SerializeField] GameObject collectibleParticle;
+    [SerializeField] GameObject playerExplosionParticle;
+    [SerializeField] Transform playerStart;
 
     private int score = 0;
 
@@ -26,6 +31,11 @@ public class GameManager : MonoBehaviour
     public static void GetCollectible(GameObject collectibleObject)
     {
         SoundEffectManager.PlayCollectibleStatic();
+        
+        GameObject particle = ObjectPools.GetObject("CollectibleParticle");
+        particle.transform.position = collectibleObject.transform.position;
+        particle.GetComponent<ParticleSystem>().Play();
+
         ObjectPools.DestroyObject(collectibleObject);
         if (instance != null) instance.Score();
     }
@@ -39,7 +49,13 @@ public class GameManager : MonoBehaviour
     public static void PlayerCrash(GameObject playerObject)
     {
         SoundEffectManager.PlayCrashStatic();
-        Destroy(playerObject);
+
+        GameObject particle = ObjectPools.GetObject("PlayerExplosion");
+        particle.transform.position = playerObject.transform.position;
+        particle.GetComponent<ParticleSystem>().Play();
+
+        ObjectPools.DestroyObject(playerObject);
+
         if (instance != null) instance.NewGame();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
@@ -47,7 +63,10 @@ public class GameManager : MonoBehaviour
     void NewGame()
     {
         score = 0;
-        Debug.Log("Score: " + score);
+        FindObjectOfType<GameUI>().UpdateScoreText(score);
+
+        GameObject player = ObjectPools.GetObject("Player");
+        player.transform.position = playerStart.position;
     }
 
     public static int GetScore()
