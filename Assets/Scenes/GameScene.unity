@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 69e10e886d52d20478f9ed5424126be8, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: a4be220830e90ea4eb88b48b7fd376ce, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37749255, g: 0.14188865, b: 0.01902334, a: 1}
+  m_IndirectSpecularColor: {r: 0.17323539, g: 0.16459554, b: 0.2966911, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -158,7 +158,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -195.82, y: 71.7978}
+  m_AnchoredPosition: {x: -195.82, y: 126}
   m_SizeDelta: {x: 391.64, y: 143.5957}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &11947189
@@ -185,7 +185,14 @@ MonoBehaviour:
 
     NAME #2 :
 
-    NAME #3 :'
+    NAME #3 :
+
+    NAME #4 :
+
+    NAME #5 :
+
+    NAME
+    #6 :'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -218,7 +225,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 16
   m_HorizontalAlignment: 4
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -699,6 +706,7 @@ GameObject:
   - component: {fileID: 395899545}
   - component: {fileID: 395899547}
   - component: {fileID: 395899546}
+  - component: {fileID: 395899548}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -772,6 +780,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 395899544}
   m_CullTransparentMesh: 1
+--- !u!114 &395899548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 395899544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 502c85684b3d65d4bb36e144acea354a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerScoreText: {fileID: 547425537}
+  playerBestScoreText: {fileID: 539181735}
+  bestScoreNamesText: {fileID: 11947189}
+  bestScorePointsText: {fileID: 616906576}
+  bestScoresToShow: 6
 --- !u!1 &441769659
 GameObject:
   m_ObjectHideFlags: 0
@@ -1005,7 +1030,7 @@ GameObject:
   - component: {fileID: 539181736}
   - component: {fileID: 539181735}
   m_Layer: 5
-  m_Name: Text Title Best (1)
+  m_Name: Text Player Best
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1084,7 +1109,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 17
   m_HorizontalAlignment: 4
   m_VerticalAlignment: 1024
   m_textAlignment: 65535
@@ -1163,7 +1188,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -125}
+  m_AnchoredPosition: {x: 0, y: -117}
   m_SizeDelta: {x: 391.64, y: 96.1351}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &547425537
@@ -1610,7 +1635,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 201.42749, y: 71.798004}
+  m_AnchoredPosition: {x: 201.42749, y: 126.00021}
   m_SizeDelta: {x: 380.425, y: 143.5957}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &616906576
@@ -1633,11 +1658,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '20
+  m_text: '12
 
     10
 
-    5'
+    8
+
+    6
+
+    4
+
+    2'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2527,7 +2558,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 87}
+  m_AnchoredPosition: {x: 0, y: 104.79}
   m_SizeDelta: {x: 391.64, y: 40.2843}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1127501032
@@ -2701,7 +2732,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.00091553, y: -99}
+  m_AnchoredPosition: {x: 0.00091552, y: -54}
   m_SizeDelta: {x: 391.6382, y: 64.195404}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1192953007
@@ -3584,7 +3615,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -0.00091553, y: 36.153}
   m_SizeDelta: {x: 269.6085, y: 72.3051}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1881485092
@@ -3630,7 +3661,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1881485093}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 395899548}
+        m_TargetAssemblyTypeName: HighscoreManager, Assembly-CSharp
+        m_MethodName: UpdateScores
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1127501032}
+          m_ObjectArgumentAssemblyTypeName: TMPro.TMP_InputField, Unity.TextMeshPro
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1881485093
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4116,6 +4159,10 @@ PrefabInstance:
     - target: {fileID: 3131677881491519177, guid: 689b4e3c5e9b030429d465eb73c17e1f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3242394978286979861, guid: 689b4e3c5e9b030429d465eb73c17e1f, type: 3}
+      propertyPath: speed
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3242394978286979861, guid: 689b4e3c5e9b030429d465eb73c17e1f, type: 3}
       propertyPath: playerIcon

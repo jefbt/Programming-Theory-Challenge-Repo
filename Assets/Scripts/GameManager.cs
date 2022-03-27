@@ -90,6 +90,8 @@ public class GameManager : MonoBehaviour
         screenFader.gameObject.SetActive(false);
         highScorePanel.SetActive(false);
 
+        SkyboxChanger.SetSkybox();
+
         GameObject player = ObjectPools.GetObject("Player");
         player.transform.position = playerStart.position;
     }
