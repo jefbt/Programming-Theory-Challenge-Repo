@@ -9,6 +9,10 @@ public abstract class Spaceship : MonoBehaviour
 
     // speed the ship flies automatically
     [SerializeField] float autoSpeed = 0f;
+    [SerializeField] bool isRandomAutoSpeed = false;
+    [SerializeField] float randomAutoSpeedMin = 1f;
+    [SerializeField] float randomAutoSpeedMax = 2f;
+
 
     // Speed controlled
     [SerializeField] protected float flySpeed = 0f;
@@ -28,6 +32,11 @@ public abstract class Spaceship : MonoBehaviour
     {
         // if it doesn't comes from the top of the screen, it comes from the bottom
         if (!flyTopDown) autoFlyDirection = Vector3.forward;
+
+        if (isRandomAutoSpeed)
+        {
+            autoSpeed = Random.Range(randomAutoSpeedMin, randomAutoSpeedMax);
+        }
 
         // prevent the ships from flyinh in the wrong direction
         if (autoSpeed < 0) autoSpeed = 0;

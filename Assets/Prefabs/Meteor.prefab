@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -962351942784347967}
   - component: {fileID: -1519530560529379621}
   - component: {fileID: -6698312457997093237}
+  - component: {fileID: -1472023286473391195}
   m_Layer: 7
   m_Name: Meteor
   m_TagString: Meteor
@@ -101,6 +102,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flyTopDown: 1
   autoSpeed: 1
+  isRandomAutoSpeed: 1
+  randomAutoSpeedMin: 1
+  randomAutoSpeedMax: 2
   flySpeed: 0
 --- !u!114 &-962351942784347967
 MonoBehaviour:
@@ -143,3 +147,29 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-1472023286473391195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 191102874026410292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ff967b7ed48f2441bcf509edf6b889a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isAnimated: 1
+  isRotating: 1
+  isFloating: 0
+  isScaling: 0
+  isRandomRotation: 1
+  isRandomStartingScale: 1
+  rotationAngle: {x: 10, y: 0, z: 0}
+  rotationSpeed: 3
+  floatSpeed: 0
+  floatRate: 0
+  startScale: {x: 0, y: 0, z: 0}
+  endScale: {x: 0, y: 0, z: 0}
+  scaleSpeed: 0
+  scaleRate: 0

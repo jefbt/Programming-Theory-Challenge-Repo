@@ -9,6 +9,9 @@ public class AnimationScript : MonoBehaviour {
     public bool isFloating = false;
     public bool isScaling = false;
 
+    public bool isRandomRotation = false;
+    public bool isRandomStartingScale = false;
+
     public Vector3 rotationAngle;
     public float rotationSpeed;
 
@@ -26,8 +29,21 @@ public class AnimationScript : MonoBehaviour {
     private float scaleTimer;
 
 	// Use this for initialization
-	void Start () {
-	
+	void Awake () {
+	    if (isRandomRotation)
+        {
+            if (Random.Range(0f, 1f) > 0.5f)
+            {
+                rotationSpeed *= -1;
+            }
+
+            rotationSpeed *= Random.Range(0.9f, 3f);
+        }
+
+        if (isRandomStartingScale)
+        {
+            transform.localScale *= Random.Range(0.75f, 2f);
+        }
 	}
 	
 	// Update is called once per frame

@@ -104,6 +104,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flyTopDown: 1
   autoSpeed: 5
+  isRandomAutoSpeed: 1
+  randomAutoSpeedMin: 5
+  randomAutoSpeedMax: 7
   flySpeed: 0
 --- !u!114 &6236738921988584851
 MonoBehaviour:

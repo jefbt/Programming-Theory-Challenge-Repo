@@ -64,6 +64,7 @@ public class GameManager : MonoBehaviour
     void Score(int points = 1)
     {
         score += points;
+        if (score < 0) score = 0;
         FindObjectOfType<GameUI>().UpdateScoreText(score);
     }
 
@@ -89,9 +90,7 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         */
 
-        instance.score -= instance.scoreLostOnCollision;
-        Mathf.Max(instance.score, 0);
-        instance.Score(0);
+        instance.Score(-instance.scoreLostOnCollision);
     }
 
     void NewGame()
