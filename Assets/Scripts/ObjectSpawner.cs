@@ -22,6 +22,10 @@ public class ObjectSpawner : MonoBehaviour
 
     private void Awake()
     {
+        spawnTime *= 1f - MainMenuManager.difficulty / 10f;
+        startDelay *= 1f - MainMenuManager.difficulty / 10f;
+        harderTimerDecrease *= 1f + MainMenuManager.difficulty / 10f;
+
         SetSpawnLimits();
         StartSpawning();
     }

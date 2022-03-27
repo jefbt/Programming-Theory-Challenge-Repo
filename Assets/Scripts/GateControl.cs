@@ -25,7 +25,7 @@ public class GateControl : MonoBehaviour
 
     [SerializeField] GameObject gatePortal;
 
-    public float finalWaitTime { get; private set; } = 2f;
+    public float finalWaitTime { get; private set; } = 0f;
 
     float trackSize;
     float gateDistance;
@@ -45,6 +45,8 @@ public class GateControl : MonoBehaviour
         {
             distanceZ = endPosition.position.z - distanceFromEndToFinish;
         }
+
+        speed *= 1f - MainMenuManager.difficulty / 10f;
     }
 
     private void Update()

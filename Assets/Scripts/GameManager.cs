@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject highScorePanel;
 
     [SerializeField] float playerImpulse = 180f;
+    [SerializeField] int scoreLostOnCollision = 3;
 
 #if UNITY_EDITOR
     public bool debugPlayerInvencible = false;
@@ -72,13 +73,19 @@ public class GameManager : MonoBehaviour
         }
 
 #if UNITY_EDITOR
-        if (instance.debugPlayerInvencible) return;
+        //if (instance.debugPlayerInvencible) return;
 #endif
 
+        /*
         ObjectPools.DestroyObject(playerObject);
 
         if (instance != null) instance.NewGame();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        */
+
+        instance.score -= instance.scoreLostOnCollision;
+        Mathf.Max(instance.score, 0);
+        instance.Score(0);
     }
 
     void NewGame()

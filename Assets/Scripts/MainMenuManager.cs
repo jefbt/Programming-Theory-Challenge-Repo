@@ -8,8 +8,11 @@ using UnityEditor;
 
 public class MainMenuManager : MonoBehaviour
 {
-    public void StartGame()
+    public static int difficulty { get; private set; } = 0;
+
+    public void StartGame(int dif = 0)
     {
+        difficulty = dif;
         SoundEffectManager.PlayStartStatic();
         SceneManager.LoadScene("GameScene");
     }
