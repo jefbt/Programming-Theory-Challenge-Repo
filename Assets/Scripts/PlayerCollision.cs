@@ -11,7 +11,7 @@ public class PlayerCollision : MonoBehaviour
             GameManager.PrepareFinalCinematic(
                 GetComponent<PlayerShip>(), other.GetComponentInParent<GateControl>());
         }
-        else if (other.CompareTag("Collectible"))
+        else if (other.CompareTag("Collectible") || other.CompareTag("Special"))
         {
             GameManager.GetCollectible(other.gameObject);
         }

@@ -52,7 +52,13 @@ public class GameManager : MonoBehaviour
         particle.GetComponent<ParticleSystem>().Play();
 
         ObjectPools.DestroyObject(collectibleObject);
-        if (instance != null) instance.Score();
+
+        int score = 1;
+        if (collectibleObject.CompareTag("Special"))
+        {
+            score = 21;
+        }
+        if (instance != null) instance.Score(score);
     }
 
     void Score(int points = 1)
