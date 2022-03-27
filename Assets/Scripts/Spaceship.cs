@@ -19,6 +19,11 @@ public abstract class Spaceship : MonoBehaviour
     // protected members
     protected Vector3 flyDirection = Vector3.zero;
 
+    private bool isMovingTo = false;
+    private Vector3 moveToPosition;
+    private float moveToSpeed = 5f;
+    private System.Action<PlayerShip> finishAction;
+
     private void Awake()
     {
         // if it doesn't comes from the top of the screen, it comes from the bottom
@@ -38,8 +43,41 @@ public abstract class Spaceship : MonoBehaviour
     // Moves the ship
     protected virtual void Move()
     {
-        Vector3 finalFlySpeed = autoFlyDirection * autoSpeed + flyDirection * flySpeed;
+        Vector3 finalFlySpeed;
+
+        if (!isMovingTo)
+        {
+            finalFlySpeed = autoFlyDirection * autoSpeed + flyDirection * flySpeed;
+        }
+        else
+        {
+            Vector3 direction = (moveToPosition - transform.position).normalized;
+            finalFlySpeed = direction * moveToSpeed;
+        }
+
         transform.position += finalFlySpeed * Time.deltaTime;
+
+        if (isMovingTo)
+        {
+            VerifyMoveTo();
+        }
+    }
+
+    public void MoveTo(Vector3 position, float speed, System.Action<PlayerShip> finishAction)
+    {
+        moveToPosition = position;
+        moveToSpeed = speed;
+        isMovingTo = true;
+        this.finishAction += finishAction;
+    }
+
+    void VerifyMoveTo()
+    {
+        if (Vector3.Distance(transform.position, moveToPosition) < 0.05f)
+        {
+            isMovingTo = false;
+            finishAction?.Invoke((PlayerShip)this);
+        }
     }
 
     protected abstract void UpdateShip();

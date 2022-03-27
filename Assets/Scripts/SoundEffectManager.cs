@@ -10,6 +10,7 @@ public class SoundEffectManager : MonoBehaviour
     public AudioClip closeSound;
     public AudioClip crashSound;
     public AudioClip collectibleSound;
+    public AudioClip finishSound;
 
     private AudioSource audioSource;
 
@@ -47,6 +48,11 @@ public class SoundEffectManager : MonoBehaviour
         Play(collectibleSound);
     }
 
+    public void PlayFinishSound()
+    {
+        Play(finishSound);
+    }
+
     public void Play(AudioClip clip)
     {
         audioSource.PlayOneShot(clip);
@@ -75,5 +81,9 @@ public class SoundEffectManager : MonoBehaviour
     public static void PlayCollectibleStatic()
     {
         instance.PlayCollectibleSound();
+    }
+    public static void PlayFinishStatic()
+    {
+        instance.PlayFinishSound();
     }
 }

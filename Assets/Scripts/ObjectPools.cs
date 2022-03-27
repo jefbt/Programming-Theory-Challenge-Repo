@@ -81,16 +81,28 @@ public class ObjectPools : MonoBehaviour
 
     public static GameObject GetObject(string tag)
     {
-        foreach(GameObject o in instance.pooledObjects[tag])
+        if (instance.pooledObjects.ContainsKey(tag))
         {
-            if (o.activeInHierarchy == false)
+            foreach (GameObject o in instance.pooledObjects[tag])
             {
-                o.SetActive(true);
-                return o;
+                if (o.activeInHierarchy == false)
+                {
+                    o.SetActive(true);
+                    return o;
+                }
             }
         }
-
         return null;
     }
 
+    public static void Clear(string tag)
+    {
+        if (instance.pooledObjects.ContainsKey(tag))
+        {
+            foreach (GameObject o in instance.pooledObjects[tag])
+            {
+                DestroyObject(o);
+            }
+        }
+    }
 }

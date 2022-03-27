@@ -1,7 +1,8 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
+using Cinemachine;
 
 [DefaultExecutionOrder(100)]
 public class GameManager : MonoBehaviour
@@ -12,7 +13,20 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject playerExplosionParticle;
     [SerializeField] Transform playerStart;
 
+    [SerializeField] CinemachineVirtualCamera gameCamera;
+    [SerializeField] CinemachineVirtualCamera cinematicCamera;
+
+    [SerializeField] FadeToHighscore screenFader;
+    [SerializeField] GameObject highScorePanel;
+
+    [SerializeField] float playerImpulse = 180f;
+
+#if UNITY_EDITOR
+    public bool debugPlayerInvencible = false;
+#endif
+
     private int score = 0;
+    private bool isCinematic = false;
 
     private void Awake()
     {
@@ -51,8 +65,15 @@ public class GameManager : MonoBehaviour
         SoundEffectManager.PlayCrashStatic();
 
         GameObject particle = ObjectPools.GetObject("PlayerExplosion");
-        particle.transform.position = playerObject.transform.position;
-        particle.GetComponent<ParticleSystem>().Play();
+        if (particle != null)
+        {
+            particle.transform.position = playerObject.transform.position;
+            particle.GetComponent<ParticleSystem>().Play();
+        }
+
+#if UNITY_EDITOR
+        if (instance.debugPlayerInvencible) return;
+#endif
 
         ObjectPools.DestroyObject(playerObject);
 
@@ -63,7 +84,11 @@ public class GameManager : MonoBehaviour
     void NewGame()
     {
         score = 0;
+        isCinematic = false;
         FindObjectOfType<GameUI>().UpdateScoreText(score);
+
+        screenFader.gameObject.SetActive(false);
+        highScorePanel.SetActive(false);
 
         GameObject player = ObjectPools.GetObject("Player");
         player.transform.position = playerStart.position;
@@ -74,8 +99,59 @@ public class GameManager : MonoBehaviour
         return instance.score;
     }
 
-    public static void ReachGate()
+    public static void ReachGate(GateControl gate)
     {
+        ObjectPools.Clear("OpponentShip");
+        ObjectPools.Clear("Meteor");
+        instance.StartCoroutine(instance.PrepareForFinishingTheLevel(gate));
+    }
 
+    IEnumerator PrepareForFinishingTheLevel(GateControl gate)
+    {
+        yield return new WaitForSeconds(gate.finalWaitTime);
+        gate.SetPlayerFinishPositionActive();
+    }
+
+    public static void PrepareFinalCinematic(PlayerShip player, GateControl gate)
+    {
+        if (!instance.isCinematic)
+        {
+            instance.isCinematic = true;
+            player.RemovePlayerControl();
+            player.MoveTo(gate.GetPlayerFinalPosition(), gate.GetFinalMoveSpeed(), instance.ReachedFinalPosition);
+            gate.TurnOffFinishCollider();
+        }
+    }
+
+    public void ReachedFinalPosition(PlayerShip player)
+    {
+        gameCamera.Priority = 0;
+        cinematicCamera.Priority = 10;
+
+        foreach(TrailRenderer trail in player.GetComponentsInChildren<TrailRenderer>())
+        {
+            trail.enabled = true;
+        }
+
+        PlayableDirector director = FindObjectOfType<PlayableDirector>();
+        director.Play();
+        StartCoroutine(WarpZone(player));
+    }
+
+    IEnumerator WarpZone(PlayerShip player)
+    {
+        yield return new WaitForSeconds(2.5f);
+        player.transform.position = new Vector3(player.transform.position.x, player.transform.position.y, -9);
+        player.GetComponent<Rigidbody>().AddForce(Vector3.forward * playerImpulse, ForceMode.Impulse);
+
+        SoundEffectManager.PlayFinishStatic();
+
+        screenFader.gameObject.SetActive(true);
+        screenFader.StartFading(BringUpHighScore);
+    }
+
+    void BringUpHighScore()
+    {
+        highScorePanel.SetActive(true);
     }
 }

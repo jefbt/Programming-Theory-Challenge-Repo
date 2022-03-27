@@ -6,13 +6,18 @@ public class PlayerCollision : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.CompareTag("Collectible"))
+        if (other.CompareTag("EndingPlace"))
         {
-            GameManager.PlayerCrash(gameObject);
+            GameManager.PrepareFinalCinematic(
+                GetComponent<PlayerShip>(), other.GetComponentInParent<GateControl>());
         }
-        else
+        else if (other.CompareTag("Collectible"))
         {
             GameManager.GetCollectible(other.gameObject);
+        }
+        else if (!other.CompareTag("Portal"))
+        {
+            GameManager.PlayerCrash(gameObject);
         }
     }
 }
